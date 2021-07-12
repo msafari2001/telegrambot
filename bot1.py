@@ -115,7 +115,7 @@ def index():
     else:
         return "<h1>salam</h1>" 
 def write_json(data, filename="contactList.json"):
-    with open(filename, 'w+') as target:
+    with open(filename, 'w') as target:
         json.dump(data, target, indent=4, ensure_ascii=False)
 def read_json(filename="contactList.json"):
     with open(filename, 'r') as target:
