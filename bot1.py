@@ -34,8 +34,12 @@ def index():
         chat_id = get_chat_id(msg)
         text = msg['message'].get('text', '')
         name = msg['message']['from']['first_name']
+
         if text=='/start':
-            sendMessage(chat_id,f'salam {name},\nlotfan be format zir vared konid,\nwiki +(fa,en)+topik')
+            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید ')
+            return Response('ok', status=200)
+        elif text=='/start': 
+            sendMessage(chat_id,f'ابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران')
             return Response('ok', status=200)
         elif 'wiki fa' in text:
             m=text.split(maxsplit=3)[2]
@@ -76,7 +80,7 @@ def index():
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)    
         else:
-            sendMessage(chat_id,f'sorry!!,\nlotfan be format zir vared konid,\nwiki +(fa,en)+mozoe,\nbaraye mesal @wiki en iran')
+            sendMessage(chat_id,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
             return Response('ok', status=200)
     else:
         return "<h1>salam</h1>"              
