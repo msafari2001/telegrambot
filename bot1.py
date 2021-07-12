@@ -26,7 +26,6 @@ def sendMessage(chat_id, text):
     'text': text,}
     response = requests.post(url + 'sendMessage', sendData)
     return response
-
 @app.route('/',methods=['POST','GET']) 
 def index():
     if request.method== 'POST':
