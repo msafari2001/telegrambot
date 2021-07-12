@@ -47,11 +47,11 @@ def index():
                 wikipedia.set_lang("fa")
                 try:
                     c=wikipedia.search(m,3)
-                    x=wikipedia.summary(c[0],sentences=6)
+                    x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
-                    x=wikipedia.summary(s,sentences=6)
+                    x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                 sendMessage(chat_id,f'{x}\n{y}')
                 return Response('ok', status=200)
@@ -66,11 +66,11 @@ def index():
                 wikipedia.set_lang("en")
                 try:
                     c=wikipedia.search(m,3)
-                    x=wikipedia.summary(c[0],sentences=6)
+                    x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
-                    x=wikipedia.summary(s,sentences=6)
+                    x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                 sendMessage(chat_id,f'{x}\n{y}')
                 return Response('ok', status=200)
