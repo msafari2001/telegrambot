@@ -31,7 +31,7 @@ def index():
     if request.method== 'POST':
         msg = request.get_json()
         chat_id = get_chat_id(msg)
-        text = msg['message'].get('text', ''
+        text = msg['message'].get('text', '')
         name = msg['message']['from']['first_name']
         if text=='/start':
             sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید ')
@@ -78,7 +78,7 @@ def index():
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)    
         else:
-            sendMessage(chat_id,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
+            sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
             return Response('ok', status=200)
     else:
         return "<h1>salam</h1>"              
