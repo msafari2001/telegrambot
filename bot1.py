@@ -79,7 +79,7 @@ def index():
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)    
         else:
-            sendMessage(chat_id,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\\nبرای مثال: en iran')
+            sendMessage(chat_id,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
             return Response('ok', status=200)
     else:
         return "<h1>salam</h1>"              
