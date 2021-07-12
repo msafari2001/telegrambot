@@ -38,7 +38,7 @@ def index():
             sendMessage(chat_id,f'salam {name},\nlotfan be format zir vared konid,\nwiki +(fa,en)+topik')
             return Response('ok', status=200)
         elif 'wiki fa' in text:
-            m=text.split(maxsplit=3)[2]
+            m=text.split(maxsplit=2)[2]
             wiki_wiki = wikipediaapi.Wikipedia('fa')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -57,7 +57,7 @@ def index():
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)
         elif 'wiki en' in text:
-            m=text.split(maxsplit=3)[2]
+            m=text.split(maxsplit=2)[2]
             wiki_wiki = wikipediaapi.Wikipedia('en')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
