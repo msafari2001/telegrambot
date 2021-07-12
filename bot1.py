@@ -36,7 +36,7 @@ def index():
         if text=='/start':
             sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید')
             return Response('ok', status=200)
-        elif text=='/start':
+        if text=='/start':
             sendMessage(chat_id,f'ابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran\nfa تهران'
             return Response('ok', status=200)           
         elif 'fa' in text:
