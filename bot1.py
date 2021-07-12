@@ -1,4 +1,3 @@
-from typing import Text
 import requests
 from flask import Flask
 from flask import request
@@ -28,7 +27,6 @@ def sendMessage(chat_id, text):
     'text': text,}
     response = requests.post(url + 'sendMessage', sendData)
     return response
-
 @app.route('/',methods=['POST','GET']) 
 def index():
     if request.method== 'POST':
@@ -41,6 +39,10 @@ def index():
             return Response('ok', status=200)
         elif 'wiki fa' in text:
             m=text.split(maxsplit=3)[2]
+            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید\nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran\nfa تهران')
+            return Response('ok', status=200)        
+        elif 'fa' in text:
+            m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('fa')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -70,8 +72,8 @@ def index():
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)
-        elif 'wiki en' in text:
-            m=text.split(maxsplit=3)[2]
+        elif 'en' in text:
+            m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('en')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -101,7 +103,7 @@ def index():
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200) 
-        elif Text=='links':
+        elif text=='links':
             links= read_json()
             username = msg['message']['from']['username']
             if username not in links.keys():
@@ -111,9 +113,8 @@ def index():
                 for y in links[username]:
                     sendMessage(chat_id,y)
                     return Response('ok', status=200)    
-
         else:
-            sendMessage(chat_id,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
+            sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
             return Response('ok', status=200)
     else:
         return "<h1>salam</h1>" 
