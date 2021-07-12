@@ -35,7 +35,7 @@ def index():
         text = msg['message'].get('text', '')
         name = msg['message']['from']['first_name']
         if text=='/start':
-            sendMessage(chat_id,f'salam {name},\nlotfan be format zir vared konid,\nwiki +(fa,en)+topik')
+            sendMessage(chat_id,f'salam {name}\nلطفا به فرمت زیر وارد کنید\nwiki +(fa,en)+topik')
             return Response('ok', status=200)
         elif 'wiki fa' in text:
             m=text.split(maxsplit=2)[2]
@@ -76,7 +76,7 @@ def index():
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)    
         else:
-            sendMessage(chat_id,f'ببخشید!!,\nلطفا به صورت زیر وارد کنید,\nwiki +(fa,en)+mozoe,\nبرای مثال: wiki en iran')
+            sendMessage(chat_id,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nwiki +(fa,en)+topic\nبرای مثال: wiki en iran')
             return Response('ok', status=200)
     else:
         return "<h1>salam</h1>"              
