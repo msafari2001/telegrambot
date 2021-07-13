@@ -114,11 +114,7 @@ def index():
             return Response('ok', status=200)
     else:
         return "<h1>telegrambot</h1>" 
-<<<<<<< HEAD
-def write_json(data, filename="contactlist.json"):
-=======
 def write_json(data, filename="contactList.json"):
->>>>>>> f1750485315a376a2550f8fd91865eb30c4427ca
     with open(filename, 'w') as target:
         json.dump(data, target, indent=4, ensure_ascii=False)
 def read_json(filename="contactlist.json"):
