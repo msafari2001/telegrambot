@@ -9,8 +9,8 @@ import warnings
 import os
 import json
 warnings.filterwarnings("ignore")
-token = '1635550428:AAH_Fk4jBN8wpi1qVcHWsLSSlPcvPdKmORM'
-url = "https://api.telegram.org/bot1635550428:AAH_Fk4jBN8wpi1qVcHWsLSSlPcvPdKmORM/"
+token = '1715220962:AAFVS0XKf68UOh57hnL_IZiQyDYtg-LE2aM'
+url = "https://api.telegram.org/bot1715220962:AAFVS0XKf68UOh57hnL_IZiQyDYtg-LE2aM/"
 app=Flask(__name__)
 def get_all_updates():
     response = requests.get(url+'getUpdates')
