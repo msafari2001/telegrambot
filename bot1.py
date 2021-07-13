@@ -111,7 +111,9 @@ def index():
                 sendMessage(chat_id,'شما موضوعی وارد نکردید!!')
             else:
                 for z in topic[username]:
-                    sendMessage(chat_id,z)       
+                    sendMessage(chat_id,z) 
+        elif text=='en camera':
+            sendMessage(chat_id,'This topic was not found')
         else:
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
         return Response('ok', status=200)
