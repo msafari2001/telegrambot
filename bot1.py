@@ -69,9 +69,7 @@ def index():
                         topic[username].append(z)
                     write_json(topic)
             elif page_py.exists()==False:
-                sendMessage(chat_id,'This topic was not found')
-        elif text=='en camera':
-            sendMessage(chat_id,'This topic was not found')       
+                sendMessage(chat_id,'This topic was not found')       
         elif 'en' in text:
             m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('en')
