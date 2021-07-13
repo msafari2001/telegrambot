@@ -113,7 +113,7 @@ def index():
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
             return Response('ok', status=200)
     else:
-        return "<h1>salam</h1>" 
+        return "<h1>telegrambot</h1>" 
 def write_json(data, filename="contactList.json"):
     with open(filename, 'w') as target:
         json.dump(data, target, indent=4, ensure_ascii=False)
