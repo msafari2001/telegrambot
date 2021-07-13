@@ -47,6 +47,8 @@ def index():
                     c=wikipedia.search(m,3)
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
+                    sendMessage(chat_id,f'{x}\n{y}')
+                    return Response('ok', status=200)
                     links= read_json()
                     username = msg['message']['from']['username']
                     if username not in links.keys():
@@ -57,14 +59,14 @@ def index():
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
+                    sendMessage(chat_id,f'{x}\n{y}')
+                    return Response('ok', status=200)
                     links= read_json()
                     username = msg['message']['from']['username']
                     if username not in links.keys():
                         links[username]=[]
                     links[username].append(y)
                     write_json(links)
-                sendMessage(chat_id,f'{x}\n{y}')
-                return Response('ok', status=200)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200)
@@ -78,6 +80,8 @@ def index():
                     c=wikipedia.search(m,3)
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
+                    sendMessage(chat_id,f'{x}\n{y}')
+                    return Response('ok', status=200)
                     links= read_json()
                     username = msg['message']['from']['username']
                     if username not in links.keys():
@@ -88,14 +92,14 @@ def index():
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
+                    sendMessage(chat_id,f'{x}\n{y}')
+                    return Response('ok', status=200)
                     links= read_json()
                     username = msg['message']['from']['username']
                     if username not in links.keys():
                         links[username]=[]
                     links[username].append(y)
                     write_json(links)
-                sendMessage(chat_id,f'{x}\n{y}')
-                return Response('ok', status=200)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
                 return Response('ok', status=200) 
