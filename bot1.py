@@ -51,8 +51,9 @@ def index():
                     username = msg['message']['from']['username']
                     if username not in topic.keys():
                         topic[username]=[]
-                    z=wikipedia.summary(c[0],sentences=1)    
-                    topic[username].append(z)
+                    z=wikipedia.summary(c[0],sentences=1)
+                    if z not in topic[username]:
+                        topic[username].append(z)
                     write_json(topic)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
@@ -64,7 +65,8 @@ def index():
                     if username not in topic.keys():
                         topic[username]=[]
                     z=wikipedia.summary(s,sentences=1)
-                    topic[username].append(z)
+                    if z not in topic[username]:
+                        topic[username].append(z)
                     write_json(topic)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
@@ -83,8 +85,9 @@ def index():
                     username = msg['message']['from']['username']
                     if username not in topic.keys():
                         topic[username]=[]
-                    z=wikipedia.summary(c[0],sentences=1)    
-                    topic[username].append(z)
+                    z=wikipedia.summary(c[0],sentences=1)
+                    if z not in topic[username]:
+                        topic[username].append(z)
                     write_json(topic)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
@@ -96,7 +99,8 @@ def index():
                     if username not in topic.keys():
                         topic[username]=[]
                     z=wikipedia.summary(s,sentences=1)
-                    topic[username].append(z)
+                    if z not in topic[username]:
+                        topic[username].append(z)
                     write_json(topic)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found') 
