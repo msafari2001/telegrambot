@@ -38,6 +38,8 @@ def index():
             sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهlinkتمام لینک هارا دریافت کنید')
         elif 'fa' in text:
             m=text.split(maxsplit=1)[1]
+            topic= read_json()
+            username = msg['message']['from']['username']
             wiki_wiki = wikipediaapi.Wikipedia('fa')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -47,15 +49,27 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    if username not in topic.keys():
+                        topic[username]=[]
+                    z=wikipedia.summary(c[0],sentences=1)    
+                    topic[username].append(z)
+                    write_json(topic)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    if username not in topic.keys():
+                        links[username]=[]
+                    z=wikipedia.summary(s,sentences=1)
+                    topic[username].append(z)
+                    write_json(topic)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
         elif 'en' in text:
             m=text.split(maxsplit=1)[1]
+            topic= read_json()
+            username = msg['message']['from']['username']
             wiki_wiki = wikipediaapi.Wikipedia('en')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -65,17 +79,42 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    if username not in topic.keys():
+                        topic[username]=[]
+                    z=wikipedia.summary(c[0],sentences=1)    
+                    topic[username].append(z)
+                    write_json(topic)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
-                    sendMessage(chat_id,f'{x}\n{y}') 
+                    sendMessage(chat_id,f'{x}\n{y}')
+                    if username not in topic.keys():
+                        links[username]=[]
+                    z=wikipedia.summary(s,sentences=1)
+                    topic[username].append(z)
+                    write_json(topic)
             elif page_py.exists()==False:
-                sendMessage(chat_id,'This topic was not found')    
+                sendMessage(chat_id,'This topic was not found') 
+        elif text=='summary':
+            topic= read_json()
+            username = msg['message']['from']['username']
+            if username not in topic.keys():
+                sendMessage(chat_id,'شما لینکی ندارید!!')
+            else:
+                for z in links[username]:
+                    sendMessage(chat_id,z)       
         else:
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
         return Response('ok', status=200)
     else:
-        return "<h1>telegrambot</h1>"                                    
+        return "<h1>telegrambot</h1>"
+def write_json(data, filename="contactList.json"):
+    with open(filename, 'w') as target:
+        json.dump(data, target, indent=4, ensure_ascii=False) 
+def read_json(filename="contactList.json"):
+    with open(filename, 'r') as target:
+        data = json.load(target) 
+    return data    
 app.run(host="0.0.0.0",port=int(os.environ.get('PORT',5000)))
     
