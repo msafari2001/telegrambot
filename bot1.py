@@ -52,14 +52,14 @@ def index():
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-            elif page_py.exists()==False:
-                sendMessage(chat_id,'This topic was not found')
-            links= read_json()
-            username = msg['message']['from']['username']
+                links= read_json()
+                username = msg['message']['from']['username']
                 if username not in links.keys():
                     links[username]=[]
                 links[username].append(y)
-                write_json(links)
+                write_json(links)    
+            elif page_py.exists()==False:
+                sendMessage(chat_id,'This topic was not found')
         elif 'en' in text:
             m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('en')
@@ -76,14 +76,14 @@ def index():
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                links= read_json()
+                username = msg['message']['from']['username']
+                if username not in links.keys():
+                    links[username]=[]
+                links[username].append(y)
+                write_json(links)  
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
-            links= read_json()
-            username = msg['message']['from']['username']
-            if username not in links.keys():
-                links[username]=[]
-            links[username].append(y)
-            write_json(links)
         elif text=='links':
             links= read_json()
             username = msg['message']['from']['username']
