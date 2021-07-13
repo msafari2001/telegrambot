@@ -62,7 +62,7 @@ def index():
                     topic= read_json()
                     username = msg['message']['from']['username']
                     if username not in topic.keys():
-                        links[username]=[]
+                        topic[username]=[]
                     z=wikipedia.summary(s,sentences=1)
                     topic[username].append(z)
                     write_json(topic)
@@ -94,7 +94,7 @@ def index():
                     topic= read_json()
                     username = msg['message']['from']['username']
                     if username not in topic.keys():
-                        links[username]=[]
+                        topic[username]=[]
                     z=wikipedia.summary(s,sentences=1)
                     topic[username].append(z)
                     write_json(topic)
@@ -106,7 +106,7 @@ def index():
             if username not in topic.keys():
                 sendMessage(chat_id,'شما موضوعی وارد نکردید!!')
             else:
-                for z in links[username]:
+                for z in topic[username]:
                     sendMessage(chat_id,z)       
         else:
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
