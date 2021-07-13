@@ -9,8 +9,8 @@ import warnings
 import os
 import json
 warnings.filterwarnings("ignore")
-token = '1635550428:AAH_Fk4jBN8wpi1qVcHWsLSSlPcvPdKmORM'
-url = "https://api.telegram.org/bot1635550428:AAH_Fk4jBN8wpi1qVcHWsLSSlPcvPdKmORM/"
+token = '1715220962:AAFVS0XKf68UOh57hnL_IZiQyDYtg-LE2aM'
+url = "https://api.telegram.org/bot1715220962:AAFVS0XKf68UOh57hnL_IZiQyDYtg-LE2aM/"
 app=Flask(__name__)
 def get_all_updates():
     response = requests.get(url+'getUpdates')
@@ -36,11 +36,7 @@ def index():
         name = msg['message']['from']['first_name']
         if text=='/start':
             sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهlinksتمام لینک هارا دریافت کنید')
-            return Response('ok', status=200)
-        elif 'wiki fa' in text:
-            m=text.split(maxsplit=3)[2]
-            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید\nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran\nfa تهران')
-            return Response('ok', status=200)        
+            return Response('ok', status=200) 
         elif 'fa' in text:
             m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('fa')
@@ -117,11 +113,11 @@ def index():
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
             return Response('ok', status=200)
     else:
-        return "<h1>salam</h1>" 
-def write_json(data, filename="contactList.json"):
-    with open(filename, 'w+') as target:
+        return "<h1>telegrambot</h1>" 
+def write_json(data, filename="contactlist.json"):
+    with open(filename, 'w') as target:
         json.dump(data, target, indent=4, ensure_ascii=False)
-def read_json(filename="contactList.json"):
+def read_json(filename="contactlist.json"):
     with open(filename, 'r') as target:
         data = json.load(target) 
     return data
