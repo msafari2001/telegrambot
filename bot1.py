@@ -38,8 +38,6 @@ def index():
             sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهsummaryخلاصه تمام موضوعات وارده شده را دریافت کنید')
         elif 'fa' in text:
             m=text.split(maxsplit=1)[1]
-            topic= read_json()
-            username = msg['message']['from']['username']
             wiki_wiki = wikipediaapi.Wikipedia('fa')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -49,6 +47,8 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    topic= read_json()
+                    username = msg['message']['from']['username']
                     if username not in topic.keys():
                         topic[username]=[]
                     z=wikipedia.summary(c[0],sentences=1)    
@@ -59,6 +59,8 @@ def index():
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    topic= read_json()
+                    username = msg['message']['from']['username']
                     if username not in topic.keys():
                         links[username]=[]
                     z=wikipedia.summary(s,sentences=1)
@@ -68,8 +70,6 @@ def index():
                 sendMessage(chat_id,'This topic was not found')
         elif 'en' in text:
             m=text.split(maxsplit=1)[1]
-            topic= read_json()
-            username = msg['message']['from']['username']
             wiki_wiki = wikipediaapi.Wikipedia('en')
             page_py = wiki_wiki.page(m)
             if page_py.exists()==True:
@@ -79,6 +79,8 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    topic= read_json()
+                    username = msg['message']['from']['username']
                     if username not in topic.keys():
                         topic[username]=[]
                     z=wikipedia.summary(c[0],sentences=1)    
@@ -89,6 +91,8 @@ def index():
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
+                    topic= read_json()
+                    username = msg['message']['from']['username']
                     if username not in topic.keys():
                         links[username]=[]
                     z=wikipedia.summary(s,sentences=1)
