@@ -36,11 +36,7 @@ def index():
         name = msg['message']['from']['first_name']
         if text=='/start':
             sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهlinksتمام لینک هارا دریافت کنید')
-<<<<<<< HEAD
-            return Response('ok', status=200) 
-=======
-            return Response('ok', status=200)      
->>>>>>> f1750485315a376a2550f8fd91865eb30c4427ca
+            return Response('ok', status=200)
         elif 'fa' in text:
             m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('fa')
