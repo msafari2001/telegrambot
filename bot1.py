@@ -35,7 +35,7 @@ def index():
         text = msg['message'].get('text', '')
         name = msg['message']['from']['first_name']
         if text=='/start':
-            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهlinksتمام لینک هارا دریافت کنید')
+            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهlinkتمام لینک هارا دریافت کنید')
         elif 'fa' in text:
             m=text.split(maxsplit=1)[1]
             wiki_wiki = wikipediaapi.Wikipedia('fa')
@@ -51,7 +51,8 @@ def index():
                     username = msg['message']['from']['username']
                     if username not in links.keys():
                         links[username]=[]
-                    links[username].append(y)
+                    z =page_py.fullurl   
+                    links[username].append(z)
                     write_json(links)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
@@ -62,7 +63,8 @@ def index():
                     username = msg['message']['from']['username']
                     if username not in links.keys():
                         links[username]=[]
-                    links[username].append(y)
+                    z =page_py.fullurl    
+                    links[username].append(z)
                     write_json(links)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
@@ -81,7 +83,8 @@ def index():
                     username = msg['message']['from']['username']
                     if username not in links.keys():
                         links[username]=[]
-                    links[username].append(y)
+                    z =page_py.fullurl    
+                    links[username].append(z)
                     write_json(links)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
@@ -92,18 +95,19 @@ def index():
                     username = msg['message']['from']['username']
                     if username not in links.keys():
                         links[username]=[]
-                    links[username].append(y)
+                    z =page_py.fullurl    
+                    links[username].append(z)
                     write_json(links)  
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
-        elif text=='links':
+        elif text=='link':
             links= read_json()
             username = msg['message']['from']['username']
             if username not in links.keys():
                 sendMessage(chat_id,'شما لینکی ندارید!!')
             else:
-                for y in links[username]:
-                    sendMessage(chat_id,y)    
+                for z in links[username]:
+                    sendMessage(chat_id,z)    
         else:
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
         return Response('ok', status=200)
