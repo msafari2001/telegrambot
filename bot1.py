@@ -47,25 +47,11 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    links= read_json()
-                    username = msg['message']['from']['username']
-                    if username not in links.keys():
-                        links[username]=[]
-                    z =page_py.fullurl   
-                    links[username].append(z)
-                    write_json(links)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    links= read_json()
-                    username = msg['message']['from']['username']
-                    if username not in links.keys():
-                        links[username]=[]
-                    z =page_py.fullurl    
-                    links[username].append(z)
-                    write_json(links)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
         elif 'en' in text:
@@ -79,50 +65,17 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    links= read_json()
-                    username = msg['message']['from']['username']
-                    if username not in links.keys():
-                        links[username]=[]
-                    z =page_py.fullurl    
-                    links[username].append(z)
-                    write_json(links)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
-                    sendMessage(chat_id,f'{x}\n{y}')
-                    links= read_json()
-                    username = msg['message']['from']['username']
-                    if username not in links.keys():
-                        links[username]=[]
-                    z =page_py.fullurl    
-                    links[username].append(z)
-                    write_json(links)  
+                    sendMessage(chat_id,f'{x}\n{y}') 
             elif page_py.exists()==False:
-                sendMessage(chat_id,'This topic was not found')
-        elif text=='link':
-            links= read_json()
-            username = msg['message']['from']['username']
-            if username not in links.keys():
-                sendMessage(chat_id,'شما لینکی ندارید!!')
-            else:
-                for z in links[username]:
-                    sendMessage(chat_id,z)    
+                sendMessage(chat_id,'This topic was not found')    
         else:
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
         return Response('ok', status=200)
     else:
-        return "<h1>telegrambot</h1>" 
-def write_json(data, filename="contactList.json"):
-    with open(filename, 'w') as target:
-        json.dump(data, target, indent=4, ensure_ascii=False)
-def read_json(filename="contactlist.json"):
-    with open(filename, 'r') as target:
-        data = json.load(target) 
-    return data
-try:
-    read_json() 
-except:
-    write_json({})                                    
+        return "<h1>telegrambot</h1>"                                    
 app.run(host="0.0.0.0",port=int(os.environ.get('PORT',5000)))
     
