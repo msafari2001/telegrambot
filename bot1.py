@@ -48,16 +48,13 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    return Response('ok', status=200)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    return Response('ok', status=200)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
-                return Response('ok', status=200)
             links= read_json()
             username = msg['message']['from']['username']
                 if username not in links.keys():
@@ -75,16 +72,13 @@ def index():
                     x=wikipedia.summary(c[0],sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    return Response('ok', status=200)
                 except wikipedia.exceptions.DisambiguationError as e:
                     s=random.choice(e.options)
                     x=wikipedia.summary(s,sentences=5)
                     y=page_py.fullurl
                     sendMessage(chat_id,f'{x}\n{y}')
-                    return Response('ok', status=200)
             elif page_py.exists()==False:
                 sendMessage(chat_id,'This topic was not found')
-                return Response('ok', status=200) 
             links= read_json()
             username = msg['message']['from']['username']
             if username not in links.keys():
@@ -96,14 +90,12 @@ def index():
             username = msg['message']['from']['username']
             if username not in links.keys():
                 sendMessage(chat_id,'شما لینکی ندارید!!')
-                return Response('ok', status=200)
             else:
                 for y in links[username]:
-                    sendMessage(chat_id,y)
-                    return Response('ok', status=200)    
+                    sendMessage(chat_id,y)    
         else:
             sendMessage(chat_id ,f'ببخشید!!\nلطفا به صورت زیر وارد کنید\nبرای مثال: en language')
-            return Response('ok', status=200)
+        return Response('ok', status=200)
     else:
         return "<h1>telegrambot</h1>" 
 def write_json(data, filename="contactList.json"):
