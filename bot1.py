@@ -35,7 +35,7 @@ def index():
         text = msg['message'].get('text', '')
         name = msg['message']['from']['first_name']
         if text=='/start':
-            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهlinkتمام لینک هارا دریافت کنید')
+            sendMessage(chat_id,f'salam {name}\nخوش آمدید\nدر این بات می تونید موضوع مورد نظر خود را وارد کنید \nومطالبی در مورد موضوع دریافت کنید و برای مطالعه بیشتر یک لینک می توانید دریافت کنید \nابتدا زبان مدنظر را وارد کنید\nبرای فارسیfa\nبرای انگلیسیen\nبا یک فاصله موضوع مدنظر را وارد کنید\nبرای مثال:\nen iran, fa تهران\nو با وارد کردن کلمهsummaryخلاصه تمام موضوعات وارده شده را دریافت کنید')
         elif 'fa' in text:
             m=text.split(maxsplit=1)[1]
             topic= read_json()
@@ -100,7 +100,7 @@ def index():
             topic= read_json()
             username = msg['message']['from']['username']
             if username not in topic.keys():
-                sendMessage(chat_id,'شما لینکی ندارید!!')
+                sendMessage(chat_id,'شما موضوعی وارد نکردید!!')
             else:
                 for z in links[username]:
                     sendMessage(chat_id,z)       
@@ -115,6 +115,10 @@ def write_json(data, filename="contactList.json"):
 def read_json(filename="contactList.json"):
     with open(filename, 'r') as target:
         data = json.load(target) 
-    return data    
+    return data 
+try:
+    read_json() 
+except:
+    write_json({})
 app.run(host="0.0.0.0",port=int(os.environ.get('PORT',5000)))
     
